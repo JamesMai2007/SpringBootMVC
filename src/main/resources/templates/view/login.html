@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/jq.css}"/> <!-- resources根据版本号设置目录 fixed -->
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script> <!-- resources设置MD5名称 content -->
+</head>
+<body>
+    <form th:action="@{/login}" th:method="POST">
+        <p style="color:red;" th:if="${param.error != null && param.error && session.SPRING_SECURITY_LAST_EXCEPTION != null}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
+        <p>Username: <input type="text" name="username" /></p>
+        <p>Password: <input type="password" name="password" /></p>
+        <p>Captcha: <img src="" id="captcha" width="100"/><a href="javascript:void(0)" id="refreshCaptcha" >刷新</a><input type="input" name="captcha" /></p>
+        <p>Remember me: <input type="checkbox" name="remember-me" /></p>
+        <p><input type="submit" value="登录" /></p>
+    </form>
+
+    <script>
+        $("#refreshCaptcha").click(function (){
+            $("#captcha").attr("src" , "/captcha.jpg?"+(new Date()).getTime());
+        });
+
+        $("#refreshCaptcha").trigger("click");
+    </script>
+</body>
+</html>

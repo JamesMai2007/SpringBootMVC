@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/jq.css}"/> <!-- resources根据版本号设置目录 fixed -->
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script> <!-- resources设置MD5名称 content -->
+</head>
+<body>
+    <div th:include="/view/head :: loadHead"></div>
+    <p>index</p>
+</body>
+</html>

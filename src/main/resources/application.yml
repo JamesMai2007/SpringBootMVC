@@ -1,0 +1,90 @@
+spring:
+   devtools:
+      #restart:
+         #exclude: static/** , templates/**
+      livereload:
+        enabled: false
+      restart:
+        quiet-period: 1000ms
+        poll-interval: 2000ms
+   thymeleaf:
+     cache: false
+   resources:
+     chain:
+       enabled: true
+       strategy:
+         content:
+           enabled: true
+           paths: /js/**
+         fixed:
+           enabled: true
+           paths: /css/**
+           version: v1
+   mvc:
+     favicon:
+       enabled: false
+     locale: zh_CN
+   datasource:
+      url: jdbc:mysql://127.0.0.1/sbmvc?autoReconnect=true&useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+   jpa:
+     hibernate:
+       ddl-auto: none
+   #messages:
+   #  basename: i18n/messages
+
+
+
+     #static-locations: static/**
+
+
+#自定义参数
+biz:
+   #字符串列表List
+   roles:
+    - USER
+    - ADMIN
+   #HashMap , key-value
+   user-map:
+     user1: Jack
+     user2: Tom
+   #列表类,id和name会映射给User类
+   user-list:
+     - id: 1
+       name: Willam
+     - id: 2
+       name: Vian
+   default-name: James
+
+management:
+  #单个终端配置
+  endpoint:
+    #针对shutdown配置
+    shutdown:
+      #是否开启shutdown终端，这是总开关，关上的话下面web的接口暴露就不生效
+      enabled: true
+    beans:
+      #开启缓存
+      cache:
+        #缓存时间，默认为0ms即不缓存
+        time-to-live: 2000ms
+    #健康检查
+    health:
+          #是否显示详细
+          show-details: always
+  #整体配置终端
+  endpoints:
+    #web端，还有jmx
+    web:
+      #暴露web接口
+      exposure:
+        #包括，id可查询文档 , 可以通过post请求shutdown关闭服务，默认是不包括的
+        include: shutdown,beans,health,info,metrics
+
+#info信息，请求/info时会返回下面的信息
+info:
+  app:
+    name: MyApp
+    jdk: 1.8

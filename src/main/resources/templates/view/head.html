@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="loadHead">
+        <p style="text-align: right;">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="退出" />
+            </form>
+        </p>
+    </div>
+</body>
+</html>
